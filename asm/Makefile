@@ -8,19 +8,19 @@ STUTIL=st-util
 ASFLAGS=-mcpu=cortex-m0 -mthumb -g
 LDFLAGS=-T linker.ld -e vtable
 
-BUILDDIR=build
-TARGET=$(BUILDDIR)/rad.bin
-ELF=$(BUILDDIR)/rad.elf
+BUILD=build
+TARGET=$(BUILD)/workshop.bin
+ELF=$(BUILD)/workshop.elf
 
 SRCS=$(wildcard src/*.s)
-OBJS=$(patsubst %.s, $(BUILDDIR)/%.o, $(notdir $(SRCS)))
+OBJS=$(patsubst %.s, $(BUILD)/%.o, $(notdir $(SRCS)))
 
 .PHONY: all
-all: $(BUILDDIR) $(TARGET)
+all: $(BUILD) $(TARGET)
 
 # Create build directory
-$(BUILDDIR):
-	mkdir -p $(BUILDDIR)
+$(BUILD):
+	mkdir -p $(BUILD)
 
 # Make flash image
 $(TARGET): $(ELF)
@@ -31,13 +31,13 @@ $(ELF): $(OBJS)
 	$(LD) -o $@ $^ $(LDFLAGS)
 
 # Assemble sources
-$(BUILDDIR)/%.o: src/%.s
+$(BUILD)/%.o: src/%.s
 	$(AS) -o $@ $< $(ASFLAGS)
 
 # Clean build files
 .PHONY: clean
 clean:
-	rm -r $(BUILDDIR)
+	rm -r $(BUILD)
 
 # Flash to device
 .PHONY: flash
