@@ -20,9 +20,17 @@
  * 0x04 - Reset ISR
  */
 vtable:
+// Stack end pointer
 .org 0x00
 	.word _stack_end
+// Reset ISR handler
+.org 0x04
 	.word isr_reset
+// Timer ISR handler
+.org 0x7c
+	.word isr_timer
+// End of the table
+.org 0xc0
 
 /**
  * Reset handler
@@ -33,3 +41,20 @@ isr_reset:
 	ldr r0, =_stack_end
 	mov sp, r0
 	b main
+
+/**
+ * Timer interrupt handler
+ * This is executed every time the internal timer reaches the condition set by us
+ */
+.thumb_func
+isr_timer:
+	push {lr}
+	// Reset timer
+	bl timer_clear_int
+	// Increment timer
+	adds r6, r6, #1
+	// Update I/O
+	bl led_update
+	pop {pc}
+
+.end

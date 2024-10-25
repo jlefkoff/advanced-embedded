@@ -207,3 +207,5 @@ gpio_set_pupd:
 	orrs r3, r3, r1
 	str r3, [r2]
 	bx lr
+
+.end
