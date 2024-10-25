@@ -25,22 +25,24 @@
  * RCC Registers
  */
 
-// AHB register address
-.equ ahben_reg, 0x14
+// AHB enable register
+.equ rcc_ahben_reg, 0x14
 // AHB register values
-.equ ahben_gpioa, 0b1 << 17
-.equ ahben_gpiob, 0b1 << 18
+.equ rcc_ahben_gpioa, 0b1 << 17
+.equ rcc_ahben_gpiob, 0b1 << 18
 
 /**
  * GPIO Port Registers
  */
 
 // Mode configuration
-.equ mode_off, 0x00
+.equ gpio_mode_reg, 0x00
+
 // Pull-up / pull-down configuration
-.equ pupd_off, 0x0c
+.equ gpio_pupd_reg, 0x0c
+
 // Data register
-.equ data_off, 0x14
+.equ gpio_data_reg, 0x14
 
 .global gpio_enable
 .global gpioa_set_mode
@@ -57,11 +59,11 @@
  */
 gpio_enable:
 	push {r0-r2}
-	ldr r0, =(rcc + ahben_reg)
+	ldr r0, =(rcc + rcc_ahben_reg)
 	ldr r1, [r0]
-	ldr r2, =ahben_gpioa
+	ldr r2, =rcc_ahben_gpioa
 	orrs r1, r2
-	ldr r2, =ahben_gpiob
+	ldr r2, =rcc_ahben_gpiob
 	orrs r1, r2
 	str r1, [r0]
 	pop {r0-r2}
@@ -75,7 +77,7 @@ gpio_enable:
 gpioa_set_mode:
 	push {lr}
 	push {r0-r4}
-	ldr r2, =(gpioa + mode_off)
+	ldr r2, =(gpioa + gpio_mode_reg)
 	bl gpio_set_mode
 	pop {r0-r4}
 	pop {pc}
@@ -88,7 +90,7 @@ gpioa_set_mode:
 gpiob_set_mode:
 	push {lr}
 	push {r0-r4}
-	ldr r2, =(gpiob + mode_off)
+	ldr r2, =(gpiob + gpio_mode_reg)
 	bl gpio_set_mode
 	pop {r0-r4}
 	pop {pc}
@@ -101,7 +103,7 @@ gpiob_set_mode:
 gpioa_set_bit:
 	push {lr}
 	push {r0-r4}
-	ldr r2, =(gpioa + data_off)
+	ldr r2, =(gpioa + gpio_data_reg)
 	bl gpio_set_bit
 	pop {r0-r4}
 	pop {pc}
@@ -114,7 +116,7 @@ gpioa_set_bit:
 gpiob_set_bit:
 	push {lr}
 	push {r0-r4}
-	ldr r2, =(gpiob + data_off)
+	ldr r2, =(gpiob + gpio_data_reg)
 	bl gpio_set_bit
 	pop {r0-r4}
 	pop {pc}
@@ -127,7 +129,7 @@ gpiob_set_bit:
 gpioa_set_pupd:
 	push {lr}
 	push {r0-r4}
-	ldr r2, =(gpioa + pupd_off)
+	ldr r2, =(gpioa + gpio_pupd_reg)
 	bl gpio_set_pupd
 	pop {r0-r4}
 	pop {pc}
@@ -140,7 +142,7 @@ gpioa_set_pupd:
 gpiob_set_pupd:
 	push {lr}
 	push {r0-r4}
-	ldr r2, =(gpiob + pupd_off)
+	ldr r2, =(gpiob + gpio_pupd_reg)
 	bl gpio_set_pupd
 	pop {r0-r4}
 	pop {pc}
