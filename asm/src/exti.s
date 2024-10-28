@@ -69,12 +69,14 @@
  * Enable external interrupt subsystem
  */
 exti_enable:
+	push {r0-r2}
 	// Enable Clock for SYSCFG
 	ldr r0, =(rcc + rcc_apb2en_reg)
 	ldr r1, =rcc_apb2en_syscfg
 	ldr r2, [r0]
 	orrs r2, r2, r1
 	str r2, [r0]
+	pop {r0-r2}
 	bx lr
 
 /**
@@ -82,6 +84,7 @@ exti_enable:
  */
 exti_link_pa0:
 	push {lr}
+	push {r0-r2}
 	// Set A pin for EXTI0
 	ldr r0, =(syscfg + syscfg_exticr1_reg)	
 	ldr r1, =syscfg_exticr1_exti0_mask
@@ -119,17 +122,20 @@ exti_link_pa0:
 	bl nvic_enable_int
 	movs r1, #0b00
 	bl nvic_set_priority
+	pop {r0-r2}
 	pop {pc}
 
 /**
  * Clear interrupt state on EXTI0
  */
 exti_clear_int0:
+	push {r0-r2}
 	ldr r0, =(exti + exti_pr_reg)
 	ldr r1, =exti_exti0
 	ldr r2, [r0]
 	str r1, [r0]
 	ldr r2, [r0]
+	pop {r0-r2}
 	bx lr
 
 .end
