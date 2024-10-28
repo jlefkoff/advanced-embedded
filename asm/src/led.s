@@ -10,6 +10,12 @@
 .cpu cortex-m0
 .thumb
 
+// LED pin map
+.equ led0, 1
+.equ led1, 2
+.equ led2, 3
+.equ led3, 4
+
 .global led_setup
 .global led_update
 
@@ -21,15 +27,15 @@
 led_setup:
 	push {lr}
 	push {r0-r1}
-	// Set pins to output
+	// Set all LEDs to ouput
 	movs r1, #0b01
-	movs r0, #0
+	ldr r0, =led0
 	bl gpioa_set_mode
-	movs r0, #1
+	ldr r0, =led1
 	bl gpioa_set_mode
-	movs r0, #2
+	ldr r0, =led2
 	bl gpioa_set_mode
-	movs r0, #3
+	ldr r0, =led3
 	bl gpioa_set_mode
 	pop {r0-r1}
 	pop {pc}
@@ -40,14 +46,13 @@ led_setup:
 led_update:
 	push {lr}
 	push {r0-r3}
-	// Current port number
-	movs r0, #0
+	// Start from first led
+	ldr r0, =led0
 	// Copy counter value into r2
 	movs r3, r6
 update_loop:
-	// Move 1 into r3
-	movs r1, #1
 	// r1 = r3 & 1
+	movs r1, #1
 	ands r1, r1, r3
 	// Set LED
 	bl set_led
@@ -56,8 +61,8 @@ update_loop:
 	// Right shift register
 	lsrs r3, r3, #1
 	// End of loop check
-	cmp r0, #4
-	bne update_loop
+	cmp r0, led3
+	ble update_loop
 	pop {r0-r3}
 	pop {pc}
 
