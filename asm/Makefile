@@ -49,4 +49,4 @@ flash:
 debug:
 	$(STUTIL) &
 	$(GDB) -ex 'target extended-remote localhost:4242' -ex 'load' $(ELF)
-	kill %1
+	killall st-util
