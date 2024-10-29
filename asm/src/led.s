@@ -66,6 +66,8 @@ update_loop:
 	pop {r0-r3}
 	pop {pc}
 
+/** Internal */
+
 /**
  * Wrapper for active-low LED
  * 	r0: port

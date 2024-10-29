@@ -75,6 +75,8 @@ nvic_set_priority:
 	pop {r0-r5}
 	pop {pc}
 
+/** Internal */
+
 /**
  * Calculate priority register offset and shift
  *	r0: value

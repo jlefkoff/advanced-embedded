@@ -147,7 +147,7 @@ gpiob_set_pupd:
 	pop {r0-r4}
 	pop {pc}
 
-/** Private */
+/** Internal */
 
 /**
  * Set mode for GPIO
