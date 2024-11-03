@@ -250,6 +250,7 @@ gpio_set_pupd:
  *	r0: value
  */
 gpio_get_bit:
+	// CHALLENGE: 2
 	// TODO: implement
 	// Read the 'port' bit of register
 	// Should place either a 0 or a 1 into r0

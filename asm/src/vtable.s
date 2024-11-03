@@ -55,6 +55,7 @@ isr_timer:
 	// Reset timer
 	bl timer_clear_int
 	// Increment timer
+	// HINT: this line needs to be removed when working with encoder
 	adds r6, r6, #1
 	// Update I/O
 	bl led_update
@@ -70,6 +71,7 @@ isr_encoder:
 	bl exti_clear_int0
 	push {r0}
 
+	// CHALLENGE: 3
 	// TODO: implement
 	// Should read pin 5 of GPIOA and update r6 (counter register)
 

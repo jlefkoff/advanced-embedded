@@ -75,6 +75,7 @@ update_loop:
  */
 set_led:
 	push {lr}
+	// CHALLENGE: 1
 	// HINT: push {r???}
 	// TODO: add logic here to fix the clock
 	bl gpioa_set_bit
