@@ -251,10 +251,22 @@ gpio_set_pupd:
  */
 gpio_get_bit:
 	// CHALLENGE: 2
-	// TODO: implement
-	// Read the 'port' bit of register
-	// Should place either a 0 or a 1 into r0
-	// HINT: Do not use registers above r4 without push/pop
+	// SOLUTION START
+
+	// Copy port number, so we can read into r0
+	movs r2, r0
+
+	// Load the register value into r0
+	ldr r0, [r1]
+
+	// Moves the port bit to the first bit position
+	lsrs r0, r0, r2
+
+	// Zero out everything except the first bit
+	movs r3, #1
+	ands r0, r0, r3
+	// SOLUTION END
+
 	bx lr
 
 .end
