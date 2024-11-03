@@ -76,10 +76,21 @@ update_loop:
 set_led:
 	push {lr}
 	// CHALLENGE: 1
-	// HINT: push {r???}
-	// TODO: add logic here to fix the clock
+	// SOLUTION START
+
+	// We will modify r1 and r2 in this subroutine
+	push {r1-r2}
+
+	// 1 XOR 1 = 0
+	// 0 XOR 1 = 1
+	movs r2, #1
+	eors r1, r1, r2
+
 	bl gpioa_set_bit
-	// HINT: pop {r???}
+	pop {r1-r2}
+
+	// SOLUTION END
+
 	pop {pc}
 
 .end
