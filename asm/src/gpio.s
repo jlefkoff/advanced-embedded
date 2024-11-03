@@ -41,8 +41,11 @@
 // Pull-up / pull-down configuration
 .equ gpio_pupd_reg, 0x0c
 
-// Data register
-.equ gpio_data_reg, 0x14
+// In data register (for reading)
+.equ gpio_in_data_reg, 0x10
+
+// Out data register (for writing)
+.equ gpio_out_data_reg, 0x14
 
 .global gpio_enable
 .global gpioa_set_mode
@@ -51,6 +54,8 @@
 .global gpiob_set_bit
 .global gpioa_set_pupd
 .global gpiob_set_pupd
+.global gpioa_get_bit
+.global gpiob_get_bit
 
 .section .text
 
@@ -103,7 +108,7 @@ gpiob_set_mode:
 gpioa_set_bit:
 	push {lr}
 	push {r0-r4}
-	ldr r2, =(gpioa + gpio_data_reg)
+	ldr r2, =(gpioa + gpio_out_data_reg)
 	bl gpio_set_bit
 	pop {r0-r4}
 	pop {pc}
@@ -116,7 +121,7 @@ gpioa_set_bit:
 gpiob_set_bit:
 	push {lr}
 	push {r0-r4}
-	ldr r2, =(gpiob + gpio_data_reg)
+	ldr r2, =(gpiob + gpio_out_data_reg)
 	bl gpio_set_bit
 	pop {r0-r4}
 	pop {pc}
@@ -147,13 +152,40 @@ gpiob_set_pupd:
 	pop {r0-r4}
 	pop {pc}
 
+/**
+ * Get bit for GPIOA pin
+ *	r0: port
+ * Returns:
+ *	r0: value
+ */
+gpioa_get_bit:
+	push {lr}
+	push {r1-r4}
+	ldr r1, =(gpioa + gpio_in_data_reg)
+	bl gpio_get_bit
+	pop {r1-r4}
+	pop {pc}
+
+/**
+ * Get bit for GPIOB pin
+ *	r0: port
+ *	r1: value
+ */
+gpiob_get_bit:
+	push {lr}
+	push {r1-r4}
+	ldr r1, =(gpiob + gpio_in_data_reg)
+	bl gpio_get_bit
+	pop {r1-r4}
+	pop {pc}
+
 /** Internal */
 
 /**
  * Set mode for GPIO
  *	r0: port
- *	r1: value
- *	r2: reg_addr
+ * Returns:
+ *	r0: value
  */
 gpio_set_mode:
 	// Compute bit masks
@@ -171,7 +203,7 @@ gpio_set_mode:
 	bx lr
 
 /**
- * Set mode for GPIO
+ * Set bit for GPIO
  *	r0: port
  *	r1: value
  *	r2: reg_addr
@@ -208,6 +240,20 @@ gpio_set_pupd:
 	ands r3, r3, r4
 	orrs r3, r3, r1
 	str r3, [r2]
+	bx lr
+
+/**
+ * Get bit for GPIO
+ *	r0: port
+ *	r1: reg_addr
+ * Returns:
+ *	r0: value
+ */
+gpio_get_bit:
+	// TODO: implement
+	// Read the 'port' bit of register
+	// Should place either a 0 or a 1 into r0
+	// HINT: Do not use registers above r4 without push/pop
 	bx lr
 
 .end
