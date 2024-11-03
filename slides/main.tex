@@ -1,0 +1,284 @@
+\documentclass{beamer}
+
+% -----------------------------------------------------------------------------
+% Packages
+% -----------------------------------------------------------------------------
+
+\usepackage{graphicx}   % For including images (e.g., QR codes)
+\usepackage{hyperref}   % For clickable hyperlinks
+\usepackage{xcolor}     % For defining custom colors
+\usepackage{iexec}     % Uncomment if you want to use Git commit hash for document version
+\usepackage{tcolorbox}  % For creating colored boxes for organization and emphasis
+\usepackage{qrcode}     % For generating QR codes directly in LaTeX
+\usepackage{pifont}     % For using dingbat symbols (e.g., checkmarks for compatibility)
+
+\newcommand{\gitAbbrevHash}{\iexec{git rev-parse --short HEAD}} % Command to get Git commit hash for versioning (requires iexec)
+
+% -----------------------------------------------------------------------------
+% Hyperlink Colors Configuration
+% -----------------------------------------------------------------------------
+% Sets colors for hyperlinks to improve readability
+\hypersetup{
+    colorlinks=true,   % Enables colored links instead of default boxed links
+    linkcolor=blue,    % Color for internal document links (e.g., TOC)
+    urlcolor=cyan      % Color for external links (e.g., URLs)
+}
+
+% -----------------------------------------------------------------------------
+% Footer Configuration
+% -----------------------------------------------------------------------------
+% Customizes the footer to display organization, workshop name, semester, and page number
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{
+    % Left: Organization Name
+    \begin{beamercolorbox}[wd=.35\paperwidth,ht=2.25ex,dp=1ex,leftskip=.3cm]{author in head/foot}%
+      Wireless Club at Northeastern University%
+    \end{beamercolorbox}%
+    % Center: Workshop Name
+    \begin{beamercolorbox}[wd=.20\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      Adv. Embedded Workshop%
+    \end{beamercolorbox}%
+    % Center: Semester Information
+    \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      Fall 2024%
+    \end{beamercolorbox}%
+    % Right: Version (Git commit hash) and Page Number
+    \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,rightskip=.3cm plus1fil]{author in head/foot}%
+      Version: \gitAbbrevHash{} \hspace{1em} \insertframenumber/\inserttotalframenumber%
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% -----------------------------------------------------------------------------
+% Slide: Title Page
+% -----------------------------------------------------------------------------
+\title{Advanced Embedded Development Workshop}
+% \subtitle{Hosted by the Northeastern University Institute of Electrical and Electronics Engineers (IEEE) Club}
+\author{Northeastern University Wireless Club - W1KBN}
+\date{November 4, 2024}
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% Slide: Title with QR Code for Sign-In
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \titlepage % Generates the title, subtitle, author, and date
+    \vspace{-1cm} % Adjusts spacing to accommodate the QR code
+    \begin{center}
+        \textbf{Sign in Here:} \\ % Prompt for participants to sign in
+        % \includegraphics[width=0.30\textwidth]{images/nuwc-signin-qrcode.png} % Image-based QR code (if needed)
+        \qrcode{https://l.w1kbn.org/signin} % Generates QR code for sign-in URL
+        \\
+        {\small \url{https://l.w1kbn.org/signin}} % Sign-in URL for participants to manually access
+    \end{center}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: General Information and Sign-In
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \begin{tcolorbox}[colframe=blue!75!black, colback=blue!10, title=About, center title]
+        \begin{itemize}
+            \item Regular Meetings: Thursdays, 7 PM @ Hayden Hall, Room 503
+            \item Workshops: Mondays, 7 PM @ East Village, Room 010
+        \end{itemize}        
+    \end{tcolorbox}
+    
+    \begin{tcolorbox}[colframe=blue!75!black, colback=blue!10, title=QR Codes \& Links, center title]
+        \begin{minipage}{0.32\textwidth}
+            \centering
+            \textbf{Sign in} \\
+            \qrcode{https://l.w1kbn.org/signin} \\
+            \tiny \url{https://l.w1kbn.org/signin}  % Smaller font for URL
+        \end{minipage}
+        \begin{minipage}{0.32\textwidth}
+            \centering
+            \textbf{Slack} \\
+            \qrcode{https://neuwireless.slack.com/join/signup} \\
+            \tiny \url{https://neuwireless.slack.com/join/signup}
+        \end{minipage}
+        \begin{minipage}{0.32\textwidth}
+            \centering
+            \textbf{Mailing List} \\
+            \qrcode{http://eepurl.com/gduCIr} \\
+            \tiny \url{http://eepurl.com/gduCIr}
+        \end{minipage}
+        \begin{itemize}
+            \item Website: \url{https://nuwireless.org/}
+        \end{itemize}
+    \end{tcolorbox}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Workshop Goals
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Workshop Goals}
+    \begin{itemize}
+        \item Explore the fundamentals of bare-metal programming on the STM32 platform
+        \item Gain experience with assembly language for low-level control
+        \item Learn to interact with sensors and input devices at a hardware level
+        \item Understand the role of the Hardware Abstraction Layer (HAL) for embedded C development
+        \item Build a foundation for industry-relevant embedded development techniques
+    \end{itemize}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Workshop Overview
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Workshop Overview}
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+            \begin{itemize}
+                \item Introduction to STM32 and bare-metal programming
+                \item Hands-on practice with assembly to control hardware
+                \item Setting up and using the embedded C HAL for streamlined development
+                \item Working with sensors and input devices directly through registers
+                \item Transitioning from low-level assembly to higher-level embedded C workflows
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{images/nuwc-advanced-embedded-workshop-overview.jpg} % Placeholder image for visual interest
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Bill of Materials (BOM)
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Bill of Materials (BOM)}
+    \textbf{Kit Contents:}
+    \begin{itemize}
+        \item \textbf{Solderless Breadboard} (White, self-adhesive)
+            \begin{itemize}
+                \item Column separation: 0.3 inches
+                \item Pin spacing: 0.1 inches
+                \item Compatible wire sizes: 29-20 AWG
+            \end{itemize}
+        \item \textbf{LSM6DSOX} – 6-axis IMU
+        \item \textbf{NUCLEO-F031K6} – STM32 Nucleo-32 Development Board
+        \item \textbf{USB 2.0 Micro-B Cable}
+        \item \textbf{STEMMA QT / Qwiic JST SH 4-pin to Male Headers Cable}
+        \item \textbf{LEDs} (4 total, any consistent color)
+        \item \textbf{330~k$\Omega$} (4 total, through-hole)
+        \item \textbf{Jumper Wires} (5 total)
+        \item \textbf{12-Step Rotary Encoder}
+    \end{itemize}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Software Requirements
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Software Requirements}
+    \footnotesize
+    \vspace{-0.5cm}
+    \begin{table}[]
+        \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|}
+            \hline
+            \textbf{Component} & \textbf{Description} & \textbf{Version} & \textbf{Download Link} \\ \hline
+            \textbf{SEGGER J-Link \ding{192} \ding{193}} & \texttt{J-Link Software and Documentation pack} for debugging & V8.10e (2024-10-30) & \url{https://www.segger.com/downloads/jlink/} \\ \hline
+            \textbf{VS Code \ding{192} \ding{193} \ding{194}} & Visual Studio Code editor & Latest & \url{https://code.visualstudio.com/} \\ \hline
+            \textbf{VS Code Extension: \texttt{Cortex-Debug} \ding{192} \ding{193} \ding{194}} & ARM Cortex-M GDB Debugger support for VS Code & 1.12.1 & \url{https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug} \\ \hline
+            \textbf{GNU Arm Embedded Toolchain \ding{192} \ding{193} \ding{194}} & Compiler/toolchain: \texttt{gcc-arm-none-eabi} & 10.3-2021.10 & \url{https://developer.arm.com/downloads/-/gnu-rm} \\ \hline
+            \textbf{ST-Link \ding{194} (Linux only)} & Open source toolset to program and debug STM32 devices & Latest & Available in Linux package manager \\ \hline
+        \end{tabular}
+    \end{table}
+    \textbf{Compatibility Legend:} \\
+    \ding{192} - macOS \\
+    \ding{193} - Windows \\
+    \ding{194} - Linux
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Theory (1) % TODO
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Theory (1)}
+    \textbf{Opcode / What is Assembly}
+    \begin{itemize}
+        \item Placeholder for explanation of opcodes and assembly language basics
+    \end{itemize}
+
+    \textbf{Register/Stack}
+    \begin{itemize}
+        \item Placeholder for details about registers and their roles in assembly
+    \end{itemize}
+
+    \textbf{Program Counter (PC)}
+    \begin{itemize}
+        \item Placeholder for description of the Program Counter and its function
+    \end{itemize}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Theory (2) % TODO
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Theory (2)}
+    \textbf{Infinite Loop}
+    \begin{itemize}
+        \item Placeholder for explanation of infinite loops / their purpose
+    \end{itemize}
+
+    \textbf{Instruction Set Register (ISR) in Detail}
+    \begin{itemize}
+        \item Placeholder for detailed explanation of ISRs
+    \end{itemize}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Theory (3) % TODO
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Theory (3)}
+    \textbf{Subroutines}
+    \begin{itemize}
+        \item Placeholder for explanation of subroutines, how they work, and their importance in assembly
+    \end{itemize}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Industry Use % TODO
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Industry Use}
+    \begin{itemize}
+        \item Placeholder for real-world applications of assembly / embedded systems in various industries
+        \item Placeholder for examples of companies and projects utilizing assembly / embedded systems. Maybe mention FFMPEG
+    \end{itemize}
+\end{frame}
+
+
+% -----------------------------------------------------------------------------
+% Slide: Contact Information
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Contact Us}
+    \begin{itemize}
+        \item Questions? Feel free to reach out!
+        \item Workshop Team Emails: \\
+        \{\href{mailto:elarbi.m@northeastern.edu}{elarbi.m}, 
+        \href{mailto:aviedov.v@northeastern.edu}{aviedov.v}, 
+        \href{mailto:heaney.ma@northeastern.edu}{heaney.ma}\}[at]northeastern[d0t]edu
+        \item General Workshop Email: \href{mailto:workshops@nuwireless.org}{workshops}[at]nuwireless[d0t]org
+        \item Website: \url{https://nuwireless.org/}
+        \item Location: Hayden Hall, Room 503
+    \end{itemize}
+    \vspace{1cm}
+    \begin{flushright}
+        \footnotesize{© 2024 Northeastern Wireless Club} \\
+        \footnotesize{Design: \href{https://melarbi.com}{Muhammad Elarbi}, based on LaTeX Beamer}
+    \end{flushright}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% End of Document
+% -----------------------------------------------------------------------------
+\end{document}
