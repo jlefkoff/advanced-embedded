@@ -153,61 +153,62 @@
 % -----------------------------------------------------------------------------
 \begin{frame}
     \frametitle{Bill of Materials (BOM)}
-    \textbf{Kit Contents:}
+    \textbf{A full kit contains:}
     \begin{itemize}
-        \item \textbf{Solderless Breadboard} (White, self-adhesive)
-            \begin{itemize}
-                \item Column separation: 0.3 inches
-                \item Pin spacing: 0.1 inches
-                \item Compatible wire sizes: 29-20 AWG
-            \end{itemize}
-        \item \textbf{LSM6DSOX dev board} – 6-axis IMU
-        \item \textbf{NUCLEO-F031K6} – STM32 Nucleo-32 Development Board
-        \item \textbf{USB C to USB Micro A}
-        \item \textbf{QWIIC to Male Headers Cable}
-        \item \textbf{LEDs} (4 total, any consistent color)
-        \item \textbf{220$\Omega$} (4 total, through-hole)
-        \item \textbf{Jumper Wires} (5 total)
-        \item \textbf{Rotary Encoder}
+        \item \textbf{Solderless Breadboard}
+        \begin{itemize}
+            \item Column separation: 0.3 inches
+            \item Pin spacing: 0.1 inches
+            \item Compatible with 29-20 AWG wire sizes
+        \end{itemize}
+        \item \textbf{NUCLEO-F031K6 Development Board}
+        \item \textbf{LSM6DSOX IMU}
+        \item \textbf{USB Cable} (USB-C to USB Micro-B or USB-A to USB Micro-B)
+        \item \textbf{STEMMA QT / Qwiic JST SH 4-pin to Premium Male Headers Cable} (4-wire cable)
+        \item \textbf{Jumper Wires} (5 pieces)
+        \item \textbf{220 $\Omega$ Resistors} (4 pieces, through-hole)
+        \item \textbf{LEDs} (4 pieces, any consistent color)
+        \item \textbf{Rotary Encoder} (12-step)
     \end{itemize}
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Software Requirements 1
+% Slide: Software Requirements (1)
 % -----------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Software Requirements}
-    \footnotesize
-    \vspace{-0.5cm}
+    \frametitle{Software Requirements (1)}
+    \footnotesize % Set font size to footnotesize for more compact text
     \begin{table}[]
-        \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|}
+        \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|} % Define column widths
             \hline
             \textbf{Component} & \textbf{Description} & \textbf{Version} & \textbf{Download Link} \\ \hline
-            \textbf{VS Code} & IDE / Text Editor & Latest & \url{https://code.visualstudio.com/} \\ \hline
-            \textbf{VS Code Extension: \texttt{Cortex-Debug}} & ARM Cortex-M GDB Debugger support for VS Code & 1.12.1 & \url{https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug} \\ \hline
-            \textbf{GNU Arm Embedded Toolchain} & Compiler/toolchain: \texttt{gcc-arm-none-eabi} & 10.3-2021.10 & \url{https://developer.arm.com/downloads/-/gnu-rm} \\ \hline
-            \textbf{CMake} & Build system & Latest & \url{https://cmake.org/download/} \\ \hline
-			\textbf{GNU Make (Windows)} & Build system, should be already installed on Linux/MacOS & Latest & \url{https://gnuwin32.sourceforge.net/packages/make.htm} \\ \hline
+            \textbf{VS Code \newline \ding{192} \ding{193} \ding{194}} & IDE / Text Editor & Latest & \url{https://code.visualstudio.com/} \\ \hline
+            \textbf{VS Code Extension: \texttt{Cortex-Debug} \ding{192} \ding{193} \ding{194}} & ARM Cortex-M GDB Debugger support for VS Code & 1.12.1 & \url{https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug} \\ \hline
+            \textbf{GNU Arm Embedded Toolchain \newline \ding{192} \ding{193} \ding{194}} & Compiler/toolchain: \texttt{gcc-arm-none-eabi} & 10.3-2021.10 & \url{https://developer.arm.com/downloads/-/gnu-rm} \\ \hline
+            \textbf{CMake \newline \ding{192} \ding{193} \ding{194}} & Build system & Latest & \url{https://cmake.org/download/} \\ \hline
+			\textbf{GNU Make \newline \ding{193}} & Build system, should be already installed on Linux/MacOS & Latest & \url{https://gnuwin32.sourceforge.net/packages/make.htm} \\ \hline
         \end{tabular}
     \end{table}
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Software Requirements 2
+% Slide: Software Requirements (2)
 % -----------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Software Requirements}
-    \footnotesize
-    \vspace{-0.5cm}
+    \frametitle{Software Requirements (2)} % Continuation slide title
+    \footnotesize % Set font size to footnotesize for more compact text
+    \vspace{-3cm} % Reduce vertical space to position content immediately below the title
     \begin{table}[]
-        \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|}
+        \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|} % Define column widths
             \hline
             \textbf{Component} & \textbf{Description} & \textbf{Version} & \textbf{Download Link} \\ \hline
-            \textbf{J-Link (Win / MacOS)} & Flashing and debugging software & V8.10e & \url{https://www.segger.com/downloads/jlink/} \\ \hline
-            \textbf{ST-Link (Linux)} & Open source toolset for STM32 devices & Latest & Arch/Fedora: \texttt{stlink} or Debian: \texttt{stlink-tools} \\ \hline
-            \textbf{Source Code} & Workshop code repo & Latest & \url{https://github.com/jlefkoff/advanced-embedded} \\ \hline
+            \textbf{J-Link \newline \ding{192} \ding{193}} & Flashing and debugging software & V8.10e & \url{https://www.segger.com/downloads/jlink/} \\ \hline
+            \textbf{ST-Link \newline \ding{194}} & Open source toolset for STM32 devices & Latest & Arch/Fedora: \texttt{stlink} or Debian: \texttt{stlink-tools} \\ \hline
+            \textbf{Source Code \newline \ding{192} \ding{193} \ding{194}} & Workshop code repo & Latest & \url{https://github.com/jlefkoff/advanced-embedded} \\ \hline
         \end{tabular}
     \end{table}
+        % Compatibility legend for icons/dings used above:
+    \textbf{Compatibility Legend:} \ding{192} macOS \hspace{1em} \ding{193} Windows \hspace{1em} \ding{194} Linux
 \end{frame}
 
 % -----------------------------------------------------------------------------
