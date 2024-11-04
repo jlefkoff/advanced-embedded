@@ -142,7 +142,7 @@
         \end{column}
         \begin{column}{0.4\textwidth}
             \begin{center}
-                \includegraphics[width=\textwidth]{images/nuwc-advanced-embedded-workshop-overview.jpg} % Placeholder image for visual interest
+                \includegraphics[width=\textwidth]{images/nuwc-advanced-embedded-workshop-overview.jpg}
             \end{center}
         \end{column}
     \end{columns}
@@ -197,7 +197,7 @@
 \begin{frame}
     \frametitle{Software Requirements (2)} % Continuation slide title
     \footnotesize % Set font size to footnotesize for more compact text
-    \vspace{-3cm} % Reduce vertical space to position content immediately below the title
+    \vspace{-2cm} % Reduce vertical space to position content immediately below the title
     \begin{table}[]
         \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|} % Define column widths
             \hline
@@ -205,6 +205,7 @@
             \textbf{J-Link \newline \ding{192} \ding{193}} & Flashing and debugging software & V8.10e & \url{https://www.segger.com/downloads/jlink/} \\ \hline
             \textbf{ST-Link \newline \ding{194}} & Open source toolset for STM32 devices & Latest & Arch/Fedora: \texttt{stlink} or Debian: \texttt{stlink-tools} \\ \hline
             \textbf{Source Code \newline \ding{192} \ding{193} \ding{194}} & Workshop code repo & Latest & \url{https://github.com/jlefkoff/advanced-embedded} \\ \hline
+            \textbf{Xcode \newline \ding{192}} & macOS IDE needed for \texttt{make} & Latest & run \newline \tiny\texttt{sudo xcode-select --install} \\ \hline
         \end{tabular}
     \end{table}
         % Compatibility legend for icons/dings used above:
@@ -399,7 +400,7 @@
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Theory (3) % TODO
+% Slide: Theory (3)
 % -----------------------------------------------------------------------------
 \begin{frame}
     \frametitle{Theory (3)}
@@ -414,12 +415,12 @@
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Industry Use HAL %
+% Slide: Industry Use HAL
 % -----------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Industry Use - HAL}
+    \frametitle{Industry Use - Hardware Abstraction Layer (HAL)}
     \begin{itemize}
-      \item The HAL (hardware abstraction layer) is a layer of software that abstracts the hardware of a microcontroller.
+      \item The HAL is a layer of software that abstracts the hardware of a microcontroller.
       \item your time as a dev is more valuable than writing individual register/timer/DMA/SPI/UART code.
       \item HAL provides a higher level of abstraction that allows you to write code that is more portable across different microcontrollers.
     \end{itemize}
@@ -427,12 +428,12 @@
 
 
 % -----------------------------------------------------------------------------
-% Slide: Peripheral Overview %
+% Slide: Peripheral Overview
 % -----------------------------------------------------------------------------
 \begin{frame}
-  \frametitle{IMU}
+    \frametitle{Inertial Measurement Unit (IMU)}
     \begin{itemize}
-      \item The LSM6DSOX is a 6-axis IMU (Inertial Measurement Unit) that measures acceleration and angular velocity.
+      \item The LSM6DSOX is a 6-axis IMU that measures acceleration and angular velocity.
       \item We interface with the IMU using the I2C protocol (talked about it last week).
       \item It has a \dots library! Written by ST. Easy peasy!
     \end{itemize}
