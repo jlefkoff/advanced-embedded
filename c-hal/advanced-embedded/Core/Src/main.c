@@ -144,16 +144,13 @@ int main(void)
   dev_ctx.handle = &SENSOR_BUS;
   /* Wait sensor boot time */
   platform_delay(BOOT_TIME);
-  /* Check device ID */
-  lsm6dsox_device_id_get(&dev_ctx, &whoamI);
+  /* TODO: Check device ID */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    uint8_t is_tilt;
-    /* Check if Tilt events */
-    lsm6dsox_tilt_flag_data_ready_get(&dev_ctx, &is_tilt);
+    // TODO: get data from sensor
   }
   /* USER CODE END 3 */
 }
