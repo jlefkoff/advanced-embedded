@@ -259,13 +259,27 @@
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Industry Use % TODO
+% Slide: Industry Use HAL %
 % -----------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Industry Use}
+    \frametitle{Industry Use - HAL}
     \begin{itemize}
-        \item Placeholder for real-world applications of assembly / embedded systems in various industries
-        \item Placeholder for examples of companies and projects utilizing assembly / embedded systems. Maybe mention FFMPEG
+      \item The HAL (hardware abstraction layer) is a layer of software that abstracts the hardware of a microcontroller.
+      \item your time as a dev is more valuable than writing individual register/timer/DMA/SPI/UART code.
+      \item HAL provides a higher level of abstraction that allows you to write code that is more portable across different microcontrollers.
+    \end{itemize}
+\end{frame}
+
+
+% -----------------------------------------------------------------------------
+% Slide: Peripheral Overview %
+% -----------------------------------------------------------------------------
+\begin{frame}
+  \frametitle{IMU}
+    \begin{itemize}
+      \item The LSM6DSOX is a 6-axis IMU (Inertial Measurement Unit) that measures acceleration and angular velocity.
+      \item We interface with the IMU using the I2C protocol (talked about it last week).
+      \item It has a \dots library! Written by ST. Easy peasy!
     \end{itemize}
 \end{frame}
 
