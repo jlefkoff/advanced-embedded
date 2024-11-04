@@ -213,6 +213,16 @@
 \end{frame}
 
 % -----------------------------------------------------------------------------
+% Slide: Wiring Diagram
+% -----------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Wiring Diagram}
+	\begin{center}
+		\includegraphics[width=\textwidth]{images/breadboard.png}
+	\end{center}
+\end{frame}
+
+% -----------------------------------------------------------------------------
 % Slide: Theory (1)
 % -----------------------------------------------------------------------------
 \begin{frame}
@@ -400,22 +410,78 @@
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Theory (3)
+% Slide: Theory (6)
 % -----------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Theory (3)}
-    \textbf{Infinite Loop}
+    \frametitle{Conditional Execution}
+	\textbf{Labels}
     \begin{itemize}
-        \item Placeholder for explanation of infinite loops / their purpose
+        \item Labels can be placed anywhere in code
+		\item Most used for subroutines
+		\item But also for loops and conditions
     \end{itemize}
-    \textbf{ISR in Detail}
+    \textbf{If/Else Statements}
     \begin{itemize}
-        \item Placeholder for detailed explanation of ISRs
+		\item The \texttt{b mylabel} instruction jumps the program to \texttt{mylabel}
+		\item The \texttt{beq mylabel} will only jump if the "Zero" flag is set
+		\item Performing certain instructions will set flags
+		\begin{itemize}
+			\item For example: \texttt{cmp r0, \#12}
+		\end{itemize}
+		\item Some suffixes that can be added to \texttt{b}
+		\begin{itemize}
+			\item \texttt{\texttildelow eq}: If values are equal
+			\item \texttt{\texttildelow le}: If values are not equal
+			\item \texttt{\texttildelow lt}: If the first value is less than the second value
+			\item \texttt{\texttildelow gt}: If the first value is greater than the second value
+			\item See Section 3.3.6 of the Programming Manual for more!
+		\end{itemize}
     \end{itemize}
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Industry Use HAL
+% Slide: Challenge (3)
+% -----------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Challenge 3}
+	\textbf{Making the Clock Bidirectional}
+	\begin{itemize}
+		\item Find challenge 3 in \texttt{vtable.s}
+		\item Use the value of GPIOA port 0 to determine which way to count
+	\end{itemize}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Theory (7)
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Other Important Concepts}
+	\textbf{Infinite Loop in Main}
+    \begin{itemize}
+		\item Hardware does not stop executing code
+		\item Without a loop, the program will run off into subroutines or uninitialized memory
+		\item You must place an infinite loop somewhere in your logic (see \texttt{main.s})
+    \end{itemize}
+	\textbf{Interrupt Service Routines}
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+			\begin{itemize}
+				\item Interrupt allows the CPU to react to events
+				\item ISR labels are placed into a vector table (vtable) at \textbf{specific addresses}
+				\item We modified \texttt{isr\_timer} in challenge 3
+			\end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+			\begin{figure*}
+				\centering
+				\includegraphics[width=0.7\textwidth]{images/vtable.png}
+			\end{figure*}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Industry Use HAL %
 % -----------------------------------------------------------------------------
 \begin{frame}
     \frametitle{Industry Use - Hardware Abstraction Layer (HAL)}
