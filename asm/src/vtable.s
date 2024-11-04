@@ -26,9 +26,6 @@ vtable:
 // Reset ISR handler
 .org 0x04
 	.word isr_reset
-// Encoder ISR handler
-.org 0x54
-	.word isr_encoder
 // Timer ISR handler
 .org 0x7c
 	.word isr_timer
@@ -54,28 +51,16 @@ isr_timer:
 	push {lr}
 	// Reset timer
 	bl timer_clear_int
-	// Increment timer
-	// HINT: this line needs to be removed when working with encoder
-	adds r6, r6, #1
-	// Update I/O
-	bl led_update
-	pop {pc}
-
-/**
- * Encoder interrupt handler
- * This will run when the encoder is turned
- */
-.thumb_func
-isr_encoder:
-	push {lr}
-	bl exti_clear_int0
-	push {r0}
 
 	// CHALLENGE: 3
-	// TODO: implement
-	// Should read pin 5 of GPIOA and update r6 (counter register)
+	// Read from GPIOA port 0
+	// You need to use gpioa_get_bit from gpio.s
+	// TODO: add code here
+	// Increment (or decrement) timer
+	adds r6, r6, #1
 
-	pop {r0}
+	// Update I/O
+	bl led_update
 	pop {pc}
 
 .end

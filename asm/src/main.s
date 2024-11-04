@@ -33,16 +33,6 @@ main:
 	bl led_setup
 	bl timer_setup
 	bl timer_start
-
-	// Setup encoder
-	// Set GPIOA ports 0, 5 to pull-up input
-	movs r0, #0
-	movs r1, #0b01
-	bl gpioa_set_pupd
-	movs r0, #5
-	bl gpioa_set_pupd
-	// NOTE: this subroutine enables encoder interrupts
-	// bl exti_link_pa0
 loop:
 	nop
 	b loop
