@@ -1,4 +1,6 @@
 build/
+.vscode/
+!launch.json
 
 # macOS files:
 **/.DS_Store
