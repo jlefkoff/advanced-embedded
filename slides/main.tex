@@ -163,17 +163,17 @@
             \end{itemize}
         \item \textbf{LSM6DSOX dev board} – 6-axis IMU
         \item \textbf{NUCLEO-F031K6} – STM32 Nucleo-32 Development Board
-        \item \textbf{USB 2.0 Micro-B Cable}
+        \item \textbf{USB C to USB Micro A}
         \item \textbf{QWIIC to Male Headers Cable}
         \item \textbf{LEDs} (4 total, any consistent color)
         \item \textbf{220$\Omega$} (4 total, through-hole)
         \item \textbf{Jumper Wires} (5 total)
-        \item \textbf{12-Step Rotary Encoder}
+        \item \textbf{Rotary Encoder}
     \end{itemize}
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Software Requirements
+% Slide: Software Requirements 1
 % -----------------------------------------------------------------------------
 \begin{frame}
     \frametitle{Software Requirements}
@@ -183,13 +183,29 @@
         \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|}
             \hline
             \textbf{Component} & \textbf{Description} & \textbf{Version} & \textbf{Download Link} \\ \hline
-            \textbf{SEGGER J-Link} & \texttt{J-Link Software and Documentation pack} for debugging & V8.10e (2024-10-30) & \url{https://www.segger.com/downloads/jlink/} \\ \hline
-            \textbf{VS Code} & Visual Studio Code editor & Latest & \url{https://code.visualstudio.com/} \\ \hline
+            \textbf{VS Code} & IDE / Text Editor & Latest & \url{https://code.visualstudio.com/} \\ \hline
             \textbf{VS Code Extension: \texttt{Cortex-Debug}} & ARM Cortex-M GDB Debugger support for VS Code & 1.12.1 & \url{https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug} \\ \hline
             \textbf{GNU Arm Embedded Toolchain} & Compiler/toolchain: \texttt{gcc-arm-none-eabi} & 10.3-2021.10 & \url{https://developer.arm.com/downloads/-/gnu-rm} \\ \hline
-            \textbf{ST-Link (Linux only)} & Open source toolset for STM32 devices & Latest & Available in Linux package manager \\ \hline
-            \textbf{Source Code} & Workshop code repo & Latest & \url{https://github.com/jlefkoff/advanced-embedded} \\ \hline
             \textbf{CMake} & Build system & Latest & \url{https://cmake.org/download/} \\ \hline
+			\textbf{GNU Make (Windows)} & Build system, should be already installed on Linux/MacOS & Latest & \url{https://gnuwin32.sourceforge.net/packages/make.htm} \\ \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Software Requirements 2
+% -----------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Software Requirements}
+    \footnotesize
+    \vspace{-0.5cm}
+    \begin{table}[]
+        \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|}
+            \hline
+            \textbf{Component} & \textbf{Description} & \textbf{Version} & \textbf{Download Link} \\ \hline
+            \textbf{J-Link (Win / MacOS)} & Flashing and debugging software & V8.10e & \url{https://www.segger.com/downloads/jlink/} \\ \hline
+            \textbf{ST-Link (Linux)} & Open source toolset for STM32 devices & Latest & Arch/Fedora: \texttt{stlink} or Debian: \texttt{stlink-tools} \\ \hline
+            \textbf{Source Code} & Workshop code repo & Latest & \url{https://github.com/jlefkoff/advanced-embedded} \\ \hline
         \end{tabular}
     \end{table}
 \end{frame}
