@@ -1,0 +1,3 @@
+[submodule "c-hal/advanced-embedded/Drivers/LSM6DSOX-PID"]
+	path = c-hal/advanced-embedded/Drivers/LSM6DSOX-PID
+	url = https://github.com/STMicroelectronics/lsm6dsox-pid.git

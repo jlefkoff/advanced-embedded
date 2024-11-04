@@ -12,10 +12,7 @@
       "request": "launch",
       "type": "cortex-debug",
       "runToEntryPoint": "main",
-      "servertype": "openocd",
-      "configFiles": [
-                "./stm32f0.cfg"
-            ],
+      "servertype": "jlink"
     }
   ]
 }
