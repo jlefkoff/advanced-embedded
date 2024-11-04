@@ -53,11 +53,29 @@ isr_timer:
 	bl timer_clear_int
 
 	// CHALLENGE: 3
-	// Read from GPIOA port 0
-	// You need to use gpioa_get_bit from gpio.s
-	// TODO: add code here
-	// Increment (or decrement) timer
+	// SOLUTION START
+	
+	// Call subroutine with argument of 0
+	movs r0, #0
+	bl gpioa_get_bit
+
+	// Check return value
+	cmp r0, #1
+	// This instruction only runs if the above statement is true
+	beq timer_inc
+
+	// The commented lines below are not necessary
+	// Only added to make the logic more readable
+
+// timer_dec:
+	subs r6, r6, #1
+	bl timer_end
+timer_inc:
 	adds r6, r6, #1
+	// bl timer_end
+
+timer_end:
+	// SOLUTION END
 
 	// Update I/O
 	bl led_update
