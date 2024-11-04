@@ -212,40 +212,190 @@
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Theory (1) % TODO
+% Slide: Theory (1)
 % -----------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Theory (1)}
-    \textbf{Opcode / What is Assembly}
-    \begin{itemize}
-        \item Placeholder for explanation of opcodes and assembly language basics
-    \end{itemize}
+    \frametitle{CPU Theory}
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+			\textbf{Instruction}
+			\begin{itemize}
+				\item Computer programs consist of many many instructions
+				\item Opcode + parameters
+			\end{itemize}
 
-    \textbf{Register/Stack}
-    \begin{itemize}
-        \item Placeholder for details about registers and their roles in assembly
-    \end{itemize}
-
-    \textbf{Program Counter (PC)}
-    \begin{itemize}
-        \item Placeholder for description of the Program Counter and its function
-    \end{itemize}
+			\textbf{Opcodes}
+			\begin{itemize}
+				\item Each possible CPU operation is assigned a number
+				\item Varies between processor families
+				\item Difficult to work with
+			\end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+			\begin{figure*}
+				\centering
+                \includegraphics[width=\textwidth]{images/8051_opcodes.png}
+				\caption{\small Some Intel 8051 Opcodes}
+			\end{figure*}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Theory (2) % TODO
+% Slide: Theory (2)
 % -----------------------------------------------------------------------------
 \begin{frame}
-    \frametitle{Theory (2)}
-    \textbf{Infinite Loop}
-    \begin{itemize}
-        \item Placeholder for explanation of infinite loops / their purpose
-    \end{itemize}
+    \frametitle{Assembly Language}
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+			\textbf{Why Assembly?}
+			\begin{itemize}
+				\item Human readable opcodes
+				\item 1 line of assembly = 1 CPU instruction
+			\end{itemize}
 
-    \textbf{Instruction Set Register (ISR) in Detail}
+			\textbf{Writing Assembly}
+			\begin{itemize}
+				\item Directives
+				\item Labels
+				\item Instructions
+				\item Comments
+			\end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+			\begin{figure*}
+				\centering
+				\includegraphics[width=\textwidth]{images/x86_binary.png}
+				\caption{\small x86\_64 Assembly Decompilation}
+			\end{figure*}
+
+			\vspace{0.5cm}
+
+			\begin{figure*}
+				\centering
+				\includegraphics[width=\textwidth]{images/assembly.png}
+				\caption{\small ARM Assembly}
+			\end{figure*}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Theory (3)
+% -----------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Registers vs Stack}
+	\textbf{Registers}
+	\begin{itemize}
+		\item Registers are very fast, but there are not many
+		\item Computations are done in registers
+		\begin{itemize}
+			\item \texttt{movs r0, \#80 // write 80 to r0}
+			\item \texttt{movs r1, \#40 // write 40 to r1}
+			\item \texttt{adds r0, r0, r1 // r0 = r0 + r1}
+		\end{itemize}
+		\item \texttt{adds, subs, ands, orrs, eors}
+	\end{itemize}
+
+	\textbf{Stack}
+	\begin{itemize}
+		\item Large in size, but cannot be manipulated directly
+		\item Useful for storing values
+		\begin{itemize}
+			\item \texttt{push \{r0\} // put the value of r0 on the stack}
+			\item We can now modify the value of r0 here without losing it
+			\item \texttt{pop \{r0\} // get our value back into r0}
+		\end{itemize}
+		\item First In, First Out!
+	\end{itemize}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Challenge (1)
+% -----------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Challenge 1}
+	\textbf{LED Binary Clock}
+	\begin{itemize}
+		\item Our program is supposed to show a 4-bit binary clock
+		\item However, our LEDs are placed in \textbf{Active Low} configuration
+		\begin{itemize}
+			\item When we write a 1, the LED turns off
+			\item When we write a 0, the LED turns on
+		\end{itemize}
+		\item Find challenge 1 in \texttt{led.s} and add assembly code to flip the value of \texttt{r0}.
+		\item Hint: think logic gates
+	\end{itemize}
+\end{frame}
+
+
+% -----------------------------------------------------------------------------
+% Slide: Theory (4)
+% -----------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Subroutines \& Special Registers}
+	\textbf{Subroutines}
     \begin{itemize}
-        \item Placeholder for detailed explanation of ISRs
+        \item Similar to functions
+		\begin{itemize}
+			\item \texttt{bl mysubroutine}
+			\item Writes the return location into register \texttt{lr}
+		\end{itemize}
+		\item After a subroutine is done, it \textbf{returns} back to where it was called by calling \texttt{bx lr}
+		\item What happens if we \texttt{bl} inside a subroutine?
     \end{itemize}
+    \textbf{Program Counter}
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+			\begin{itemize}
+				\item Tracks which part of the program we are in
+				\item Instead of \texttt{bx lr}, we can load a value to this register
+				\item Store old \texttt{lr} on the stack and pop into \texttt{pc} later
+			\end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+			\begin{figure*}
+				\centering
+				\includegraphics[width=\textwidth]{images/nested_subroutine.png}
+				\caption{\small Nested Subroutines}
+			\end{figure*}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Theory (5)
+% -----------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Memory Locations}
+	\textbf{Accessing Memory Locations}
+    \begin{itemize}
+		\item Like the stack, we cannot manipulate memory values directly
+		\item Load into register, modify, then put back
+		\begin{itemize}
+			\item \texttt{ldr r0, [r1]}
+			\item \texttt{str r0, [r1]}
+		\end{itemize}
+		\item Braces treat value as an memory address
+    \end{itemize}
+	\textbf{Peripherals}
+	\begin{itemize}
+		\item Peripherals such as GPIO ports are located in memory
+		\item The datasheet has a map of all peripherals
+	\end{itemize}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% Slide: Challenge (2)
+% -----------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Challenge 2}
+	\textbf{Reading GPIO}
+	\begin{itemize}
+		\item Find challenge 2 in \texttt{gpio.s} and implement \texttt{gpio\_get\_bit}
+		\item Hint: look at our subroutines for inspiration
+		\item Hint: \texttt{r1} already has the memory location
+	\end{itemize}
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -253,9 +403,13 @@
 % -----------------------------------------------------------------------------
 \begin{frame}
     \frametitle{Theory (3)}
-    \textbf{Subroutines}
+    \textbf{Infinite Loop}
     \begin{itemize}
-        \item Placeholder for explanation of subroutines, how they work, and their importance in assembly
+        \item Placeholder for explanation of infinite loops / their purpose
+    \end{itemize}
+    \textbf{ISR in Detail}
+    \begin{itemize}
+        \item Placeholder for detailed explanation of ISRs
     \end{itemize}
 \end{frame}
 
