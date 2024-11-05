@@ -27,7 +27,7 @@
 % -----------------------------------------------------------------------------
 % Footer Configuration
 % -----------------------------------------------------------------------------
-% Customizes the footer to display organization, workshop name, semester, and page number
+% Customizes the footer to display organization, workshop name, semester, version, and page number
 \setbeamertemplate{footline}{%
   \leavevmode%
   \hbox{
@@ -181,11 +181,11 @@
         \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|} % Define column widths
             \hline
             \textbf{Component} & \textbf{Description} & \textbf{Version} & \textbf{Download Link} \\ \hline
-            \textbf{VS Code \newline \ding{192} \ding{193} \ding{194}} & IDE / Text Editor & Latest & \url{https://code.visualstudio.com/} \\ \hline
-            \textbf{VS Code Extension: \texttt{Cortex-Debug} \ding{192} \ding{193} \ding{194}} & ARM Cortex-M GDB Debugger support for VS Code & 1.12.1 & \url{https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug} \\ \hline
-            \textbf{GNU Arm Embedded Toolchain \newline \ding{192} \ding{193} \ding{194}} & Compiler/toolchain: \texttt{gcc-arm-none-eabi} & 10.3-2021.10 & \url{https://developer.arm.com/downloads/-/gnu-rm} \\ \hline
+            \textbf{VS Code \newline \ding{192} \ding{193} \ding{194}} & IDE/Text Editor & Latest & \url{https://code.visualstudio.com/} \\ \hline
+            \textbf{VS Code Extension: \texttt{Cortex-Debug} \ding{192} \ding{193} \ding{194}} & ARM Cortex-M GDB Debugger for VS Code & 1.12.1 & \url{https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug} \\ \hline
+            \textbf{GNU Arm Embedded Toolchain \newline \ding{192} \ding{193} \ding{194}} & ARM compiler/toolchain: \texttt{gcc-arm-none-eabi} & 10.3-2021.10 & \url{https://developer.arm.com/downloads/-/gnu-rm} \\ \hline
             \textbf{CMake \newline \ding{192} \ding{193} \ding{194}} & Build system & Latest & \url{https://cmake.org/download/} \\ \hline
-			\textbf{GNU Make \newline \ding{193}} & Build system, should be already installed on Linux/MacOS & Latest & \url{https://gnuwin32.sourceforge.net/packages/make.htm} \\ \hline
+			\textbf{GNU Make \newline \ding{193}} & Build system; pre-installed on Linux/macOS & Latest & \url{https://gnuwin32.sourceforge.net/packages/make.htm} \\ \hline
         \end{tabular}
     \end{table}
 \end{frame}
@@ -201,10 +201,10 @@
         \begin{tabular}{|p{2cm}|p{3cm}|p{1cm}|p{3.5cm}|} % Define column widths
             \hline
             \textbf{Component} & \textbf{Description} & \textbf{Version} & \textbf{Download Link} \\ \hline
-            \textbf{J-Link \newline \ding{192} \ding{193}} & Flashing and debugging software & V8.10e & \url{https://www.segger.com/downloads/jlink/} \\ \hline
-            \textbf{ST-Link \newline \ding{194}} & Open source toolset for STM32 devices & Latest & Arch/Fedora: \texttt{stlink} or Debian: \texttt{stlink-tools} \\ \hline
-            \textbf{Source Code \newline \ding{192} \ding{193} \ding{194}} & Workshop code repo & Latest & \url{https://github.com/jlefkoff/advanced-embedded} \\ \hline
-            \textbf{Xcode \newline \ding{192}} & macOS IDE needed for \texttt{make} & Latest & run \newline \tiny\texttt{sudo xcode-select --install} \\ \hline
+            \textbf{J-Link \newline \ding{192} \ding{193}} & Flashing/debug software & V8.10e & \url{https://www.segger.com/downloads/jlink/} \\ \hline
+            \textbf{ST-Link \newline \ding{194}} & Open source toolset to program/debug STM32 devices & Latest & Arch/Fedora: \texttt{stlink} or Debian: \texttt{stlink-tools} \\ \hline
+            \textbf{Source Code \newline \ding{192} \ding{193} \ding{194}} & Workshop repository & Latest & \url{https://github.com/jlefkoff/advanced-embedded} \\ \hline
+            \textbf{Xcode Command Line Tools\newline \ding{192}} & macOS development tool for \texttt{make} & Latest & run \newline \scriptsize\texttt{xcode-select --install} \\ \hline
         \end{tabular}
     \end{table}
         % Compatibility legend for icons/dings used above:
@@ -212,12 +212,12 @@
 \end{frame}
 
 % -----------------------------------------------------------------------------
-% Slide: Wiring Diagram % TODO: FIX WIRING Line 4 should be line 5
+% Slide: Wiring Diagram
 % -----------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Wiring Diagram}
 	\begin{center}
-		\includegraphics[width=\textwidth]{images/breadboard.png}
+		\includegraphics[width=\textwidth]{images/2024-fall-nuwc-advanced-embedded-wiring.pdf}
 	\end{center}
 \end{frame}
 
@@ -338,7 +338,6 @@
 	\end{itemize}
 \end{frame}
 
-
 % -----------------------------------------------------------------------------
 % Slide: Theory (4)
 % -----------------------------------------------------------------------------
@@ -433,7 +432,7 @@
 			\item \texttt{\texttildelow le}: If values are not equal
 			\item \texttt{\texttildelow lt}: If the first value is less than the second value
 			\item \texttt{\texttildelow gt}: If the first value is greater than the second value
-			\item See Section 3.3.6 of the Programming Manual for more!
+			\item See Section \texttt{3.3.6} of the Programming Manual for more!
 		\end{itemize}
     \end{itemize}
 \end{frame}
@@ -491,7 +490,6 @@
     \end{itemize}
 \end{frame}
 
-
 % -----------------------------------------------------------------------------
 % Slide: Peripheral Overview
 % -----------------------------------------------------------------------------
@@ -509,14 +507,17 @@
 % -----------------------------------------------------------------------------
 \begin{frame}
     \frametitle{Documentation}
-    \textbf{Links to Datasheets and Manuals:}
+    \textbf{Links to Datasheets and Manuals:}\\
+    Required:\\
     \begin{itemize}
         \item PM0215 Programming Manual: \href{https://www.st.com/resource/en/programming_manual/pm0215-stm32f0-series-cortexm0-programming-manual-stmicroelectronics.pdf} {STM32F0 series Cortex-M0}
+    \end{itemize}
+    Recommend:\\
+    \begin{itemize}
         \item UM1956 User Manual: \href{https://www.st.com/resource/en/user_manual/dm00231744-stm32-nucleo-32-boards-mb1180-stmicroelectronics.pdf}{STM32 Nucleo-32 boards (MB1180)}
         \item RM0091 Reference Manual: \href{https://www.st.com/resource/en/reference_manual/rm0091-stm32f0x1stm32f0x2stm32f0x8-advanced-armbased-32bit-mcus-stmicroelectronics.pdf}{STM32F0x1/STM32F0x2/STM32F0x8 advanced Arm®-based 32-bit MCUs}
     \end{itemize}
 \end{frame}
-
 % -----------------------------------------------------------------------------
 % Slide: Contact Information
 % -----------------------------------------------------------------------------
